@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#176c60">
+  <meta name="description" content="LeaP learns where robot action generation should begin. A proprioception-conditioned source prior for generative robot policies. Accepted at CoRL 2026.">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="LeaP — Where Should Action Generation Begin?">
+  <meta property="og:description" content="A Learnable Source Prior for Generative Robot Policies · CoRL 2026">
+  <meta property="og:url" content="https://daimeipo.github.io/LeaP/">
+  <meta property="og:image" content="https://daimeipo.github.io/LeaP/assets/overview.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="canonical" href="https://daimeipo.github.io/LeaP/">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="style.css">
+  <script src="app.js" defer></script>
+  <title>LeaP | CoRL 2026</title>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <nav class="nav wrap" aria-label="Main navigation">
+      <a class="brand" href="#" aria-label="LeaP home"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M5 25V7M5 25h22M6 24l7-5 5 1 8-13"/><circle cx="26" cy="7" r="3"/></svg>LeaP<span class="brand-dot">.</span></a>
+      <div class="nav-links"><a href="#overview">Overview</a><a href="#method">Method</a><a href="#results">Results</a><a href="#citation">Citation</a></div>
+      <a class="nav-github" href="https://github.com/daimeipo/LeaP" target="_blank" rel="noopener noreferrer">GitHub <span aria-hidden="true">↗</span></a>
+    </nav>
+  </header>
+  <main id="main">
+    <section class="hero wrap" aria-labelledby="paper-title">
+      <div class="hero-copy">
+        <div class="eyebrow"><span class="conference">CoRL 2026</span><span>Conference on Robot Learning</span></div>
+        <h1 id="paper-title">Where Should<br>Action Generation<br><em>Begin?</em></h1>
+        <p class="paper-subtitle">A Learnable Source Prior<br class="desktop-break"> for Generative Robot Policies</p>
+        <p class="authors">Meipo Dai<sup>*</sup><span>Qiyuan Zhuang<sup>*</sup></span><span>He-Yang Xu<sup>*</sup></span><span>Ying-Jie Shuai</span><span>Yijun Wang</span><span>Qi Dou</span><span>Xiu-Shen Wei<sup>†</sup></span></p>
+        <p class="affiliation">Xiu-Shen Wei Group · Southeast University</p>
+        <p class="author-note"><sup>*</sup> Equal contribution <span> <sup>†</sup> Corresponding author</span></p>
+        <div class="hero-actions"><a class="button primary" href="https://arxiv.org/abs/2606.17408" target="_blank" rel="noopener noreferrer">Read the paper <span aria-hidden="true">↗</span></a><a class="button secondary" href="https://github.com/daimeipo/LeaP" target="_blank" rel="noopener noreferrer">Code <span aria-hidden="true">↗</span></a><a class="text-link" href="#overview">Watch overview <span aria-hidden="true">↓</span></a></div>
+      </div>
+      <aside class="source-visual" aria-label="An illustration of two action-generation starting points">
+        <div class="visual-topline"><span>A BETTER STARTING POINT</span><span class="live-dot" aria-hidden="true"></span></div>
+        <svg class="source-diagram" viewBox="0 0 380 355" role="img" aria-labelledby="source-title source-description">
+          <title id="source-title">A state-informed source for action generation</title>
+          <desc id="source-description">Conceptual illustration: a learned source places initial samples near a target action. This is an illustration, not experimental data.</desc>
+          <defs><pattern id="dot-grid" width="20" height="20" patternUnits="userSpaceOnUse"><circle cx="1" cy="1" r=".65" fill="#b7c9bf"/></pattern><radialGradient id="source-glow"><stop offset="0" stop-color="#68b6a1" stop-opacity=".35"/><stop offset="1" stop-color="#68b6a1" stop-opacity="0"/></radialGradient></defs>
+          <rect width="380" height="355" fill="url(#dot-grid)"/>
+          <ellipse id="prior-glow" cx="229" cy="173" rx="83" ry="74" fill="url(#source-glow)"/>
+          <g id="transport-paths" fill="none" stroke="#88b7a9" stroke-width="1" opacity=".32"></g>
+          <g id="source-points" fill="#176c60"></g>
+          <g transform="translate(286 130)"><circle r="20" fill="#fffdf8"/><path d="M0-11 3.4-3.4 11 0 3.4 3.4 0 11-3.4 3.4-11 0-3.4-3.4Z" fill="#c0763e" stroke="#fff" stroke-width="2"/></g>
+          <path d="M300 119l22-32h26" fill="none" stroke="#9b977f"/>
+          <text x="252" y="73" class="svg-label">Target action</text>
+          <text id="source-label" x="174" y="279" class="svg-label">Learned source</text>
+          <text x="18" y="336" class="svg-small">CONCEPTUAL ILLUSTRATION</text>
+        </svg>
+        <div class="source-toggle" role="group" aria-label="Compare source distributions"><button type="button" data-source="gaussian" aria-pressed="false">Standard Gaussian</button><button class="active" type="button" data-source="learned" aria-pressed="true">LeaP prior</button></div>
+        <p id="source-explanation" class="visual-caption" aria-live="polite">Start from a distribution that knows the robot’s state. Then refine with the generator.</p>
+      </aside>
+    </section>
+
+    <section class="metrics wrap" aria-label="Key paper results">
+      <div><strong>81.6<span>%</span></strong><p>Average success<br>15 RoboTwin tasks</p></div>
+      <div><strong>+25.5<span> pp</span></strong><p>Over the same-architecture<br>NoPrior baseline</p></div>
+      <div><strong>80.0<span>%</span></strong><p>Average success<br>3 real-world tasks</p></div>
+      <div><strong>0.21<span>M</span></strong><p>Prior-head parameters<br>1.6% of the 13.22M model</p></div>
+    </section>
+
+    <section class="section video-section" id="overview">
+      <div class="wrap">
+        <div class="section-heading"><div><span class="kicker">01 / OVERVIEW</span><h2>A small change.<br>A more informed start.</h2></div><p>Learn where to start generating actions, with a lightweight prior that adapts to the robot’s own state.</p></div>
+        <div class="video-shell"><video id="overview-video" controls playsinline preload="metadata" poster="assets/video-poster.jpg" aria-label="LeaP research overview video"><source src="assets/leap-overview.mp4" type="video/mp4"><p>Your browser does not support this video. <a href="assets/leap-overview.mp4">Download the overview video.</a></p></video></div>
+        <div class="video-footer"><span>LeaP research overview <span class="muted">· 4 min 11 sec</span></span><a href="assets/leap-overview.mp4" download>Download video <span aria-hidden="true">↓</span></a></div>
+        <p class="video-version-note">Submission presentation with updated author credits; original narration and experimental slides preserved. The video reports an earlier BridgePolicy simulation score (60.8%); the paper and results below report 61.4%.</p>
+        <div class="abstract"><h3>The idea</h3><p>Generative robot policies typically begin with an observation-independent standard Gaussian. <strong>LeaP learns the source distribution itself.</strong> A lightweight MLP predicts the mean and state-adaptive variance of a proprioception-conditioned diagonal Gaussian. The generator starts with an informed yet stochastic sample, then refines it using visual and proprioceptive observations. The generator architecture and inference solver stay unchanged.</p></div>
+      </div>
+    </section>
+
+    <section class="section wrap" id="method">
+      <div class="section-heading"><div><span class="kicker">02 / METHOD</span><h2>Learn the source.<br>Keep the generator.</h2></div><p>The prior anchors generation in a state-dependent neighborhood. The generator learns the fine-grained actions.</p></div>
+      <figure class="paper-figure"><img src="assets/overview.png" width="2290" height="694" loading="lazy" alt="LeaP pipeline: proprioceptive features enter a learned Gaussian prior; a sampled source and visual plus state conditioning enter the flow or diffusion generator to produce an action chunk."><figcaption>Proprioception informs the source distribution. Vision and proprioception condition the downstream generator.</figcaption></figure>
+      <div class="method-steps">
+        <article><span class="step-number">01</span><h3>A state-informed prior</h3><p>A two-layer MLP predicts a mean and diagonal variance from proprioception. Each time step samples independent noise from the shared distribution.</p><div class="formula" aria-label="z zero equals mu of state plus sigma of state times epsilon">z₀ = μ(s) + σ(s) ⊙ ε</div></article>
+        <article><span class="step-number">02</span><h3>Joint, complementary training</h3><p>Flow matching learns action refinement. Negative log-likelihood supervises the source density. Contrastive alignment pairs source samples with expert actions.</p><div class="formula">L = L<sub>flow</sub> + βL<sub>NLL</sub> + αL<sub>align</sub></div></article>
+        <article><span class="step-number">03</span><h3>Generative refinement</h3><p>The source sample passes to a generator conditioned on both vision and state. The same prior improves flow-matching and diffusion-bridge variants in the paper.</p><div class="formula">source → generator → action chunk</div></article>
+      </div>
+      <details class="detail-panel"><summary>How does LeaP differ from other starting points?<span aria-hidden="true">+</span></summary><figure><img src="assets/source-priors.png" width="2048" height="848" loading="lazy" alt="Three source strategies: a standard Gaussian, a deterministic observation-derived source, and LeaP’s learned state-conditioned Gaussian."><figcaption>LeaP learns both where source samples should lie and how much they should vary with state.</figcaption></figure></details>
+    </section>
+
+    <section class="section results-section" id="results">
+      <div class="wrap">
+        <div class="section-heading"><div><span class="kicker">03 / RESULTS</span><h2>A better source.<br>Better robot policies.</h2></div><p>Evaluated on 15 simulation tasks and three real-world manipulation tasks. Reported results are from the paper.</p></div>
+        <div class="result-tabs" role="group" aria-label="Select evaluation setting"><button class="active" type="button" data-results="simulation" aria-pressed="true">RoboTwin simulation <span>15 tasks</span></button><button type="button" data-results="real" aria-pressed="false">Real-world manipulation <span>3 tasks</span></button></div>
+        <div class="results-grid">
+          <div class="chart-panel"><div class="chart-heading"><h3 id="chart-title">Average task success</h3><span>Higher is better ↑</span></div><div id="result-bars" class="result-bars" aria-live="polite"></div><p id="result-protocol" class="chart-note"></p></div>
+          <div class="result-insight"><span class="kicker" id="insight-label">THE SOURCE MAKES A DIFFERENCE</span><p class="insight-number" id="result-delta">+25.5<span> pp</span></p><h3 id="insight-title">Same architecture.<br>A learned starting point.</h3><p id="insight-text">NoPrior uses the same encoder, flow-matching generator and pipeline as LeaP, but starts from a standard Gaussian. LeaP improves average success from 56.1% to 81.6%.</p><a class="text-link" href="https://arxiv.org/pdf/2606.17408" target="_blank" rel="noopener noreferrer">Explore the full experiments <span aria-hidden="true">↗</span></a></div>
+        </div>
+        <figure class="paper-figure real-figure"><img src="assets/real-robot.png" width="2200" height="978" loading="lazy" alt="Franka Research 3 evaluation. LeaP succeeds on Pick Cube, Close Box and Pick and Place Sandbags at 70%, 80% and 90%. NoPrior scores 50%, 35% and 55%."><figcaption>Real-world evaluation on a Franka Research 3: rigid-object picking, articulated manipulation and deformable-object handling. Average success: LeaP 80.0%, A2A 68.3%, VITA 56.7%, NoPrior 46.7%.</figcaption></figure>
+        <details class="detail-panel"><summary>What matters in the prior? Explore the ablations.<span aria-hidden="true">+</span></summary><div class="ablation-copy"><p>Learning a state-adaptive variance matters: LeaP reaches 85.3% on the three-task ablation, compared with 78.0% for a mean-only source and 62.7% for a learned mean with fixed variance. The prior also improves diffusion-bridge success from 68.7% (deterministic prior mean) to 76.7%.</p><p class="muted">Ablations use three representative tasks and one random seed; they are trends, not multi-seed estimates.</p></div><figure><img src="assets/ablations.png" width="2200" height="1794" loading="lazy" alt="Ablations comparing source input, prior distribution, training losses and generator families."></figure></details>
+        <p class="scope-note">Scope: evaluated on tabletop manipulation. Transfer to vision-language-action models or dexterous hands has not yet been established.</p>
+      </div>
+    </section>
+
+    <section class="section wrap resources-section" id="resources">
+      <div><span class="kicker">04 / OPEN SOURCE</span><h2>Start exploring<br>with LeaP.</h2><p>Policy code, RoboTwin integration, training configuration and CPU regression tests are available on GitHub.</p><a class="button primary" href="https://github.com/daimeipo/LeaP" target="_blank" rel="noopener noreferrer">Get the code <span aria-hidden="true">↗</span></a></div>
+      <div class="resource-links"><a href="https://github.com/daimeipo/LeaP#1-install" target="_blank" rel="noopener noreferrer"><div><span>GET STARTED</span><h3>Installation & training</h3><p>Environment setup and the RoboTwin pipeline.</p></div><span aria-hidden="true">↗</span></a><a href="https://github.com/daimeipo/LeaP/blob/main/docs/VALIDATION.md" target="_blank" rel="noopener noreferrer"><div><span>REPRODUCIBILITY</span><h3>Validation notes</h3><p>What has been checked, and the limits of those checks.</p></div><span aria-hidden="true">↗</span></a><p class="release-note">Source release. Model weights, demonstrations and simulator assets are not included. LeaP contributions use the MIT License; third-party components retain their own licenses.</p></div>
+    </section>
+
+    <section class="citation-section" id="citation"><div class="wrap"><div class="citation-heading"><div><span class="kicker">CITATION</span><h2>Build on this work.</h2></div><button id="copy-citation" class="button secondary" type="button">Copy BibTeX <span aria-hidden="true">↗</span></button></div><pre tabindex="0"><code id="bibtex">@article{dai2026leap,
+  title   = {Where Should Action Generation Begin? A Learnable Source
+             Prior for Generative Robot Policies},
+  author  = {Dai, Meipo and Zhuang, Qiyuan and Xu, He-Yang and
+             Shuai, Ying-Jie and Wang, Yijun and Dou, Qi and Wei, Xiu-Shen},
+  journal = {arXiv preprint arXiv:2606.17408},
+  year    = {2026},
+  url     = {https://arxiv.org/abs/2606.17408}
+}</code></pre><p id="copy-status" class="copy-status" role="status" aria-live="polite"></p><p class="citation-note">Accepted at CoRL 2026. The citation above links to the available arXiv version.</p></div></section>
+  </main>
+  <footer class="footer wrap"><a class="brand" href="#">LeaP<span class="brand-dot">.</span></a><p>Learning where action generation begins.<br><span>CoRL 2026 · Southeast University</span></p><a href="https://github.com/daimeipo/LeaP" target="_blank" rel="noopener noreferrer">Project source <span aria-hidden="true">↗</span></a></footer>
+</body>
+</html>

@@ -1,0 +1,9 @@
+# Tested stack: Python 3.10, CUDA 12.1.
+torch==2.4.1
+torchvision==0.19.1
+numpy==1.26.4
+zarr==2.12.0
+numcodecs==0.13.1
+sapien==3.0.0b1
+mplib==0.2.1
+setuptools<81

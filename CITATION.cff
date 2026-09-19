@@ -1,0 +1,26 @@
+cff-version: 1.2.0
+message: "If you use LeaP, please cite the paper."
+title: "Where Should Action Generation Begin? A Learnable Source Prior for Generative Robot Policies"
+type: software
+version: 0.1.0
+authors:
+  - family-names: Dai
+    given-names: Meipo
+  - family-names: Zhuang
+    given-names: Qiyuan
+  - family-names: Xu
+    given-names: He-Yang
+  - family-names: Shuai
+    given-names: Ying-Jie
+  - family-names: Wang
+    given-names: Yijun
+  - family-names: Dou
+    given-names: Qi
+  - family-names: Wei
+    given-names: Xiu-Shen
+repository-code: "https://github.com/daimeipo/LeaP"
+url: "https://daimeipo.github.io/LeaP/"
+identifiers:
+  - type: doi
+    value: 10.48550/arXiv.2606.17408
+license: MIT
