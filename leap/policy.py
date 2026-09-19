@@ -233,10 +233,11 @@ class LeaPPolicy(BasePolicy):
 
         Call ``eval()`` before inference to disable dropout. The source remains
         stochastic; seed PyTorch externally for reproducible evaluations.
+        Only the first ``n_obs_steps`` frames condition the prediction, even
+        when a complete training window is supplied.
         """
         nobs = self.normalizer.normalize(obs_dict)
         B = next(iter(nobs.values())).shape[0]
-        To = next(iter(nobs.values())).shape[1]
         T, A = self.horizon, self.action_dim
 
         mu, log_var, z_obs = self._encode_obs(nobs)
@@ -247,6 +248,6 @@ class LeaPPolicy(BasePolicy):
 
         naction_pred = x.reshape(B, T, A)
         action_pred = self.normalizer['action'].unnormalize(naction_pred)
-        start = To - 1
+        start = self.n_obs_steps - 1
         action = action_pred[:, start:start + self.n_action_steps]
         return {"action": action, "action_pred": action_pred}

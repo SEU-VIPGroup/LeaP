@@ -6,18 +6,25 @@ version: 0.1.0
 authors:
   - family-names: Dai
     given-names: Meipo
+    affiliation: Southeast University
   - family-names: Zhuang
     given-names: Qiyuan
+    affiliation: Southeast University
   - family-names: Xu
     given-names: He-Yang
+    affiliation: Southeast University
   - family-names: Shuai
     given-names: Ying-Jie
+    affiliation: Southeast University
   - family-names: Wang
     given-names: Yijun
+    affiliation: Southeast University
   - family-names: Dou
     given-names: Qi
+    affiliation: The Chinese University of Hong Kong
   - family-names: Wei
     given-names: Xiu-Shen
+    affiliation: Southeast University
 repository-code: "https://github.com/daimeipo/LeaP"
 url: "https://daimeipo.github.io/LeaP/"
 identifiers:

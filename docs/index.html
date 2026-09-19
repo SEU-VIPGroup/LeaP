@@ -32,8 +32,8 @@
         <div class="eyebrow"><span class="conference">CoRL 2026</span><span>Conference on Robot Learning</span></div>
         <h1 id="paper-title">Where Should<br>Action Generation<br><em>Begin?</em></h1>
         <p class="paper-subtitle">A Learnable Source Prior<br class="desktop-break"> for Generative Robot Policies</p>
-        <p class="authors">Meipo Dai<sup>*</sup><span>Qiyuan Zhuang<sup>*</sup></span><span>He-Yang Xu<sup>*</sup></span><span>Ying-Jie Shuai</span><span>Yijun Wang</span><span>Qi Dou</span><span>Xiu-Shen Wei<sup>†</sup></span></p>
-        <p class="affiliation">Xiu-Shen Wei Group · Southeast University</p>
+        <p class="authors">Meipo Dai<sup>1,*</sup><span>Qiyuan Zhuang<sup>1,*</sup></span><span>He-Yang Xu<sup>1,*</sup></span><span>Ying-Jie Shuai<sup>1</sup></span><span>Yijun Wang<sup>1</sup></span><span>Qi Dou<sup>2</sup></span><span>Xiu-Shen Wei<sup>1,†</sup></span></p>
+        <p class="affiliation"><sup>1</sup> Southeast University<br><sup>2</sup> The Chinese University of Hong Kong</p>
         <p class="author-note"><sup>*</sup> Equal contribution <span> <sup>†</sup> Corresponding author</span></p>
         <div class="hero-actions"><a class="button primary" href="https://arxiv.org/abs/2606.17408" target="_blank" rel="noopener noreferrer">Read the paper <span aria-hidden="true">↗</span></a><a class="button secondary" href="https://github.com/daimeipo/LeaP" target="_blank" rel="noopener noreferrer">Code <span aria-hidden="true">↗</span></a><a class="text-link" href="#overview">Watch overview <span aria-hidden="true">↓</span></a></div>
       </div>
@@ -68,9 +68,9 @@
     <section class="section video-section" id="overview">
       <div class="wrap">
         <div class="section-heading"><div><span class="kicker">01 / OVERVIEW</span><h2>A small change.<br>A more informed start.</h2></div><p>Learn where to start generating actions, with a lightweight prior that adapts to the robot’s own state.</p></div>
-        <div class="video-shell"><video id="overview-video" controls playsinline preload="metadata" poster="assets/video-poster.jpg" aria-label="LeaP research overview video"><source src="assets/leap-overview.mp4" type="video/mp4"><p>Your browser does not support this video. <a href="assets/leap-overview.mp4">Download the overview video.</a></p></video></div>
-        <div class="video-footer"><span>LeaP research overview <span class="muted">· 4 min 11 sec</span></span><a href="assets/leap-overview.mp4" download>Download video <span aria-hidden="true">↓</span></a></div>
-        <p class="video-version-note">Submission presentation with updated author credits; original narration and experimental slides preserved. The video reports an earlier BridgePolicy simulation score (60.8%); the paper and results below report 61.4%.</p>
+        <div class="video-shell"><video id="overview-video" controls playsinline preload="metadata" poster="assets/video-poster.jpg?v=20260919-affiliations" aria-label="LeaP research overview video"><source src="assets/leap-overview.mp4?v=20260919-affiliations" type="video/mp4"><p>Your browser does not support this video. <a href="assets/leap-overview.mp4?v=20260919-affiliations">Download the overview video.</a></p></video></div>
+        <div class="video-footer"><span>LeaP research overview <span class="muted">· 4 min 11 sec</span></span><span><a href="assets/leap-overview.mp4?v=20260919-affiliations" download>Video ↓</a> · <a href="assets/LeaP_CoRL2026.pptx" download>Slides (PPTX) ↓</a></span></div>
+        <p class="video-version-note">Submission presentation with updated author names and affiliations; original narration and experimental slides preserved. The video reports an earlier BridgePolicy simulation score (60.8%); the paper and results below report 61.4%.</p>
         <div class="abstract"><h3>The idea</h3><p>Generative robot policies typically begin with an observation-independent standard Gaussian. <strong>LeaP learns the source distribution itself.</strong> A lightweight MLP predicts the mean and state-adaptive variance of a proprioception-conditioned diagonal Gaussian. The generator starts with an informed yet stochastic sample, then refines it using visual and proprioceptive observations. The generator architecture and inference solver stay unchanged.</p></div>
       </div>
     </section>
@@ -115,6 +115,6 @@
   url     = {https://arxiv.org/abs/2606.17408}
 }</code></pre><p id="copy-status" class="copy-status" role="status" aria-live="polite"></p><p class="citation-note">Accepted at CoRL 2026. The citation above links to the available arXiv version.</p></div></section>
   </main>
-  <footer class="footer wrap"><a class="brand" href="#">LeaP<span class="brand-dot">.</span></a><p>Learning where action generation begins.<br><span>CoRL 2026 · Southeast University</span></p><a href="https://github.com/daimeipo/LeaP" target="_blank" rel="noopener noreferrer">Project source <span aria-hidden="true">↗</span></a></footer>
+  <footer class="footer wrap"><a class="brand" href="#">LeaP<span class="brand-dot">.</span></a><p>Learning where action generation begins.<br><span>CoRL 2026 · Southeast University · The Chinese University of Hong Kong</span></p><a href="https://github.com/daimeipo/LeaP" target="_blank" rel="noopener noreferrer">Project source <span aria-hidden="true">↗</span></a></footer>
 </body>
 </html>

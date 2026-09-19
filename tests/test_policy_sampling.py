@@ -58,6 +58,19 @@ class PolicySamplingTest(unittest.TestCase):
         self.assertFalse(torch.equal(source1, source3))
         self.assertFalse(torch.equal(first["action_pred"], changed["action_pred"]))
 
+    def test_full_training_window_returns_same_executable_actions(self):
+        # Future frames in a dataset window must not shift the action chunk.
+        full_obs = {key: torch.cat([value, torch.randn(
+            value.shape[0], 5, *value.shape[2:])], dim=1)
+            for key, value in self.obs.items()}
+        torch.manual_seed(123)
+        short = self.policy.predict_action(self.obs)
+        torch.manual_seed(123)
+        full = self.policy.predict_action(full_obs)
+        self.assertEqual(full["action"].shape, (2, 6, 2))
+        torch.testing.assert_close(full["action"], short["action"], rtol=0, atol=0)
+        torch.testing.assert_close(full["action_pred"], short["action_pred"], rtol=0, atol=0)
+
     def test_sigma_changes_inference_source(self):
         with torch.no_grad():
             self.policy.prior.head[-1].weight.zero_()

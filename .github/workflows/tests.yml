@@ -2,9 +2,9 @@ name: CPU checks
 on:
   push:
     branches: [main]
-    paths: ['leap/**', 'scripts/**', 'tests/**', 'configs/**', 'setup.py', 'requirements.txt', 'constraints-robotwin.txt', '.github/workflows/tests.yml']
+    paths: ['leap/**', 'scripts/**', 'tests/**', 'configs/**', 'third_party/*.json', 'CITATION.cff', 'MANIFEST.in', 'setup.py', 'requirements.txt', 'constraints-robotwin.txt', '.github/workflows/tests.yml']
   pull_request:
-    paths: ['leap/**', 'scripts/**', 'tests/**', 'configs/**', 'setup.py', 'requirements.txt', 'constraints-robotwin.txt', '.github/workflows/tests.yml']
+    paths: ['leap/**', 'scripts/**', 'tests/**', 'configs/**', 'third_party/*.json', 'CITATION.cff', 'MANIFEST.in', 'setup.py', 'requirements.txt', 'constraints-robotwin.txt', '.github/workflows/tests.yml']
   workflow_dispatch:
 permissions:
   contents: read

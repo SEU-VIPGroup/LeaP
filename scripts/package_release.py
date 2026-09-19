@@ -12,9 +12,9 @@ def main():
     root = Path(__file__).resolve().parents[1]
     files = [root / name for name in (
         "README.md", "LICENSE", "THIRD_PARTY_NOTICES.md", "MANIFEST.in", ".gitignore",
-        "setup.py", "requirements.txt", "constraints-robotwin.txt",
-        "third_party/README.md", "third_party/robotwin.lock.json")]
-    for name in ("leap", "configs", "scripts", "tests", "docs", "licenses"):
+        "setup.py", "requirements.txt", "constraints-robotwin.txt", "CITATION.cff",
+        "third_party/README.md", "third_party/robotwin.lock.json", "third_party/curobo.lock.json")]
+    for name in ("leap", "configs", "scripts", "tests", "docs", "licenses", ".github/workflows"):
         files.extend(path for path in (root / name).rglob("*") if path.is_file()
                      and "__pycache__" not in path.parts and path.suffix not in (".pyc", ".pyo"))
     for path in files:

@@ -1,6 +1,26 @@
 # Release validation
 
-## Publication checks
+## Review fixes (2026-09-19)
+
+- Twelve CPU unittest cases passed, including the new regression comparing
+  three observation frames with an eight-frame training window. With the same
+  first three frames and random seed, both inputs now return identical six-step
+  actions and identical full predictions. The original implementation returned
+  only one executable action for the full window.
+- The actual release ZIP builder was exercised: citation metadata, the GitHub
+  workflow, website assets and dependency locks are included; local data/cache
+  exclusions and refusal to overwrite an existing archive remain in place.
+- The installation wrapper checks the official RoboTwin revision and installer,
+  pins cuRobo to v0.7.8 (`d64c4b005459db10c5dd867d8b30a87d5bda9bdb`),
+  prepares build tools and disables PyTorch3D's isolated build so it can import
+  the installed PyTorch. An executable local Git fixture verifies that a newer,
+  incompatible default branch does not replace the locked API.
+
+These unit tests do not validate CUDA compilation, simulator rendering or
+paper success rates. The original publication and research checks are recorded
+below as historical results.
+
+## Initial publication checks (commit 55fede3)
 
 On 2026-09-19, all eight bundled unittest cases passed again on CPU for this
 public repository. This check used Python 3.10, PyTorch 2.3.1+cu121,

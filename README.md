@@ -2,10 +2,13 @@
 
 **CoRL 2026 — Where Should Action Generation Begin? A Learnable Source Prior for Generative Robot Policies**
 
-Meipo Dai\*, Qiyuan Zhuang\*, He-Yang Xu\*, Ying-Jie Shuai, Yijun Wang, Qi Dou, Xiu-Shen Wei†  
+Meipo Dai<sup>1,*</sup>, Qiyuan Zhuang<sup>1,*</sup>, He-Yang Xu<sup>1,*</sup>, Ying-Jie Shuai<sup>1</sup>, Yijun Wang<sup>1</sup>, Qi Dou<sup>2</sup>, Xiu-Shen Wei<sup>1,†</sup>
+
+<sup>1</sup> Southeast University (东南大学) · <sup>2</sup> The Chinese University of Hong Kong (香港中文大学)
+
 \* Equal contribution. † Corresponding author.
 
-[**Paper**](https://arxiv.org/abs/2606.17408) · [**Project website**](https://daimeipo.github.io/LeaP/) · [**Overview video**](https://daimeipo.github.io/LeaP/#overview) · [**Validation notes**](docs/VALIDATION.md)
+[**Paper**](https://arxiv.org/abs/2606.17408) · [**Project website**](https://daimeipo.github.io/LeaP/) · [**Overview video**](https://daimeipo.github.io/LeaP/#overview) · [**Slides**](https://daimeipo.github.io/LeaP/assets/LeaP_CoRL2026.pptx) · [**Validation notes**](docs/VALIDATION.md)
 
 ![LeaP framework: a proprioception-conditioned Gaussian source followed by a generative robot policy](docs/assets/overview.png)
 
@@ -65,7 +68,10 @@ python -m unittest discover -s tests -v
 ~~~
 
 For simulation, use Linux, an NVIDIA GPU, a compatible driver, a CUDA toolkit
-for compiling dependencies, and working Vulkan. Refer to the
+for compiling dependencies, and working Vulkan. The PyTorch CUDA wheels alone
+do not supply a complete development toolkit: `nvcc` and CUDA library headers
+(including `cusparse.h`) are required. Use CUDA 12.1 with the PyTorch build above
+and point `CUDA_HOME` to that toolkit. Refer to the
 [official installation guide](https://robotwin-platform.github.io/doc/usage/robotwin-install.html)
 for driver/container requirements. These commands use the pinned repository's
 script/ directory, not latest upstream scripts/.
@@ -79,9 +85,10 @@ export ROBOTWIN_ROOT="$LEAP_ROOT/third_party/RoboTwin"
 sudo apt-get install libvulkan1 mesa-vulkan-drivers vulkan-tools ffmpeg unzip
 vulkaninfo --summary
 
+# Verified official installer, with cuRobo pinned to the compatible v1 API.
+# Do not run upstream script/_install.sh directly: it clones latest cuRobo.
+python scripts/install_robotwin.py --robotwin "$ROBOTWIN_ROOT"
 cd "$ROBOTWIN_ROOT"
-# Official installer builds PyTorch3D/cuRobo and applies simulator patches.
-PIP_CONSTRAINT="$LEAP_ROOT/constraints-robotwin.txt" bash script/_install.sh
 bash script/_download_assets.sh
 # The downloader also runs update_embodiment_config_path.py.
 python script/test_render.py
@@ -92,9 +99,20 @@ python -m pip install -e '.[robotwin]' -c constraints-robotwin.txt
 
 A compatible existing RoboTwin environment can be reused. Activate it and
 install LeaP there. Use the pinned checkout for evaluation and make sure asset
-paths resolve. The release checks used an existing simulator environment;
-a fresh full simulator installation was not repeated. Installing LeaP alone
-does not install the simulator or download assets.
+paths resolve. cuRobo is locked to **v0.7.8**, commit
+`d64c4b005459db10c5dd867d8b30a87d5bda9bdb`, in
+[`third_party/curobo.lock.json`](third_party/curobo.lock.json). Current cuRobo
+main has a different API; the official project also
+[recommends v0.7.8 for v1 users](https://github.com/NVlabs/curobo#readme).
+The installer verifies the RoboTwin revision, leaves its tracked files unchanged,
+prepares the Python build tools, and builds PyTorch3D against the installed
+PyTorch using `--no-build-isolation`. It stops if a command fails or
+`envs/curobo` already exists. For a retry, fetch
+a fresh checkout with `scripts/fetch_robotwin.py --destination <new-path>`;
+do not delete a checkout containing your work.
+
+Installing LeaP alone does not install the simulator or download assets.
+See [validation notes](docs/VALIDATION.md) for exactly what was tested.
 
 ## 2. Collect: beat_block_hammer
 
