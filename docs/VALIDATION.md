@@ -16,9 +16,42 @@
   the installed PyTorch. An executable local Git fixture verifies that a newer,
   incompatible default branch does not replace the locked API.
 
-These unit tests do not validate CUDA compilation, simulator rendering or
-paper success rates. The original publication and research checks are recorded
-below as historical results.
+The unit suite is complemented by the fresh-environment checks below. The
+original publication and research checks follow as historical results.
+
+## Fresh environment installation (2026-09-19)
+
+A new isolated Conda environment was created on an existing Linux/NVIDIA host,
+with user site packages disabled. It used Python 3.10.21, PyTorch 2.4.1+cu121,
+torchvision 0.19.1+cu121 and a CUDA 12.1 development toolkit, including the CUDA
+library headers. No packages from the existing research environment were used.
+
+The revised `scripts/install_robotwin.py` completed against the locked RoboTwin
+checkout. PyTorch3D 0.7.8 (upstream `stable` commit
+`75ebeeaea0908c5527e7b1e305fbc7681382db47`) and cuRobo 0.7.8 were compiled from
+source. The initial clean-environment attempt exposed PyTorch3D's isolated-build
+`ModuleNotFoundError: torch`; the wrapper now prepares build tools and uses
+`--no-build-isolation`. The local toolkit also needed its development library
+headers, as now stated in the README.
+
+The following checks passed:
+
+- All 12 LeaP CPU tests in the new environment.
+- Imports of `MotionGen`, `MotionGenConfig`, `MotionGenPlanConfig`,
+  `PoseCostMetric`, `Pose` and `JointState`, as required by RoboTwin's planner.
+- PyTorch3D farthest-point sampling on CUDA: 128 input points, 16 sampled points.
+- cuRobo Franka forward kinematics on CUDA: two joint configurations produced
+  finite end-effector positions and quaternions.
+- The pinned official `script/test_render.py` reported `Render Well`
+  (renderer/scene initialization).
+- `python -m pip check` reported no broken requirements. The tracked files in
+  both external checkouts remained unchanged.
+
+[Machine-readable versions and results](install-validation.json) accompany
+this record. Benchmark assets were not downloaded for this check; no complete
+task collection, training run, motion-planning benchmark or 100-episode policy
+evaluation was repeated. This verifies a fresh Python dependency installation
+on the tested host, not installation on every clean machine or GPU.
 
 ## Initial publication checks (commit 55fede3)
 
