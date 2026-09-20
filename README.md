@@ -8,7 +8,7 @@ Meipo Dai<sup>1,*</sup>, Qiyuan Zhuang<sup>1,*</sup>, He-Yang Xu<sup>1,*</sup>, 
 
 \* Equal contribution. † Corresponding author.
 
-[**Paper**](https://arxiv.org/abs/2606.17408) · [**Project website**](https://daimeipo.github.io/LeaP/) · [**Overview video**](https://daimeipo.github.io/LeaP/#overview) · [**Slides**](https://daimeipo.github.io/LeaP/assets/LeaP_CoRL2026.pptx?v=20260919-english) · [**Validation notes**](docs/VALIDATION.md)
+[**Paper**](https://arxiv.org/abs/2606.17408) · [**Project website**](https://seu-vipgroup.github.io/LeaP/) · [**Overview video**](https://seu-vipgroup.github.io/LeaP/#overview) · [**Slides**](https://seu-vipgroup.github.io/LeaP/assets/LeaP_CoRL2026.pptx?v=20260919-english) · [**Validation notes**](docs/VALIDATION.md)
 
 ![LeaP framework: a proprioception-conditioned Gaussian source followed by a generative robot policy](docs/assets/overview.png)
 

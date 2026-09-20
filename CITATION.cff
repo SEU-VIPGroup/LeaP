@@ -25,8 +25,8 @@ authors:
   - family-names: Wei
     given-names: Xiu-Shen
     affiliation: Southeast University
-repository-code: "https://github.com/daimeipo/LeaP"
-url: "https://daimeipo.github.io/LeaP/"
+repository-code: "https://github.com/SEU-VIPGroup/LeaP"
+url: "https://seu-vipgroup.github.io/LeaP/"
 identifiers:
   - type: doi
     value: 10.48550/arXiv.2606.17408
