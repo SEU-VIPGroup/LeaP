@@ -1,8 +1,0 @@
-include README.md CITATION.cff THIRD_PARTY_NOTICES.md requirements.txt constraints-robotwin.txt
-recursive-include .github/workflows *.yml *.yaml
-recursive-include licenses *.txt
-recursive-include configs *.yaml
-recursive-include scripts *.py
-recursive-include tests *.py
-recursive-include docs *.md
-include third_party/README.md third_party/robotwin.lock.json third_party/curobo.lock.json
